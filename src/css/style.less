@@ -1,64 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
-header {
+
+.vstdaProject {
+  background: #136a8a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #89c1c6, #6281c9);
+  background: linear-gradient(to left, #89c1c6, #6281c9);
+  height: 100vh;
+  }
+.vstdaContainer {
+  max-width: 1140px;
+  width: 100%;
+  padding: 20px;
+}
+#vstdaHeader {
   color: white;
-  
 }
 
-h4 {
+.vstdah4 {
   border-bottom: solid white;
   margin-bottom: 20px;
   padding-bottom: 10px;
 }
-
-body {
-  background: #136a8a; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #b3e6eb, #6281c9);
-  background: linear-gradient(to left, #b3e6eb, #6281c9);
+#listCard {
+  border: none !important;
 }
 
-.no-padding {
-  padding: 0 !important;
-}
-
-.no-margin {
-  margin: 0 !important;
-}
-
-.white {
-  color: white !important;
-}
-
-.strike-through {
-  text-decoration: line-through;
-}
-
-textarea {
+.create-todo-text {
   width: 100%;
   max-width: 100%;
   min-height: 8em;
   max-height: 16em;
 }
-
-strong + small {
-    display: block;
+.update-todo-text {
+  width: 100%;
+  max-width: 100%;
+  min-height: 8em;
+  max-height: 16em;
 }
-
-input[type=checkbox] {
-  margin-right: 1em;
+.update-todo-priority {
+  width: 200px;
 }
-
-div.pull-right a {
-  margin-left: 1em;
+.update-todo-btn {
+  width: 150px;  
+  bottom: 0;
+}
+.todoListText {
+  width: 60%
+}
+.todoListEdit {
+  display: inline-block;
+  width: 20%
+}
+.todoListDelete {
+  display: inline-block;
+  width: 20%;
+  margin-right: 50px;
 }
 #list {
   max-width: 100%;
   height: 3em;
 }
-#edit {
+#vstdaEdit {
   height: 17em;
-}
-.update-todo-priority {
-  margin-right: 100em;
 }
 .update-label {
   text-align: left;

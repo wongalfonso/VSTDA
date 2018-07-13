@@ -2,14 +2,25 @@ import React, { Component, PropTypes } from 'react';
 
 export class ToDoForm extends Component {
 
+  button() {
+    if (this.props.toDo.length > 0) {
+      return (
+        <button className="create-todo btn btn-success form-control" type="submit" >Add</button>
+      )
+    } else {
+      return (
+        <button className="create-todo btn btn-success form-control" type="submit" disabled>Add</button>
+      )
+    }
+  }
 
   render() {
     return (
-      <div className = "col-lg-4">
+      <div className = "col-4">
         <form onSubmit={this.props.createToDo}>
-          <div className="panel panel-default">
-            <div className="panel-heading">Add New Todo</div>
-            <div className="panel-body">
+          <div className="card card-default">
+            <div className="card-header">Add New Todo</div>
+            <div className="card-body">
               <div className="form-group">
                 <label>I want to..</label>
                 <textarea
@@ -21,8 +32,7 @@ export class ToDoForm extends Component {
 
                 <label>How Much of a priority is this?</label>
                 <select
-                  className="create-todo-priority form-control"
-                  value={this.props.priority}
+                  className="create-todo-priority form-control"                  
                   onChange={this.props.handlePrior}
                 >
                   <option defaultValue hidden>Select a Priority</option>
@@ -32,8 +42,8 @@ export class ToDoForm extends Component {
                 </select>
               </div>
             </div>
-            <div className="panel-footer">
-              <button className="create-todo btn btn-success form-control" type="submit" >Add</button>
+            <div className="card-footer">
+              {this.button()}
             </div>
 
           </div>

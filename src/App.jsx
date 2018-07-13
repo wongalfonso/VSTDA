@@ -1,16 +1,16 @@
-import React, { Component, PropTypes } from 'react';
-import { List } from "./List.jsx"
-import { ToDoForm } from "./ToDoForm.jsx"
+import React, { Component } from 'react';
+import { List } from './List.jsx'
+import { ToDoForm } from './ToDoForm.jsx'
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       lists: [],
-      toDo: "",
-      priority: "list-group-item-success",
-      id: "",
-      newTodo: "",
+      toDo: '',
+      priority: 'list-group-item-success',
+      id: '',
+      newTodo: '',
       completed: false,
       editing: false
     };
@@ -35,12 +35,14 @@ class App extends Component {
           completed: this.state.completed
         },
         ...this.state.lists
-      ]
+      ],
+      toDo: '',
     })
+
   }
 
   componentDidUpdate(id) {
-  
+
   }
 
   handleText(event) {
@@ -50,15 +52,13 @@ class App extends Component {
   }
 
   handlePrior(event) {
-    console.log(event.target.value)
     let val;
-    if (event.target.value === "3") {val = "list-group-item-danger"} 
-    if (event.target.value === "2") {val = "list-group-item-warning"}  
-    if (event.target.value === "1") {val = "list-group-item-success"}
+    if (event.target.value === '3') { val = 'list-group-item-danger' }
+    if (event.target.value === '2') { val = 'list-group-item-warning' }
+    if (event.target.value === '1') { val = 'list-group-item-success' }
     this.setState({
       priority: val
     })
-    console.log(this.state.priority)
   }
 
   handleChecked(event) {
@@ -113,52 +113,57 @@ class App extends Component {
   remove(id) {
     var lists = this.state.lists.filter(list => list.id !== id)
     this.setState({ lists })
-    
+
   }
 
 
-  render() {
-    var newText, newPrior, id;
+  render() {    
     return (
-      <div className='container'>
-        <header className="header col-lg-12">
-          <h1>Very Simple Todo App</h1>
-          <h4>Track All of the Things</h4>
-        </header>
-        <ToDoForm
-          createToDo={this.createToDo}
-          toDo={this.state.toDo}
-          handleText={this.handleText}
-          priority={this.state.priority}
-          handlePrior={this.handlePrior}
-        />
-        <div className="col-lg-8">
-          <div className="panel panel-default " id="panel">
-            <div className="panel-heading">
-              <h3 className="panel-title">View Todos</h3>
+      <div className='vstdaProject'>
+        <div className='container vstdaContainer'>
+        <div className='row'>
+          <div id='vstdaHeader' className='col-lg-12'>
+            <h1>Very Simple Todo App</h1>
+            <h4 className = 'vstdah4'>Track All of the Things</h4>
+          </div>        
+        </div>
+
+          <div className='row'>
+            <ToDoForm
+              createToDo={this.createToDo}
+              toDo={this.state.toDo}
+              handleText={this.handleText}
+              priority={this.state.priority}
+              handlePrior={this.handlePrior}
+            />
+
+            <div className='col-8'>
+              <div className='card card-default' id='ListCard'>
+                <div className='card-header'>View Todos</div>
+                <ul className='list-group'>
+                  {this.state.lists.map((list, i) => {
+                    return (
+                      <List
+                        key={list.id}
+                        id={list.id}
+                        list={list}
+                        checked={this.state.checked}
+                        completed={this.state.completed}
+                        editing={this.state.editing}
+                        priority={this.state.priority}
+                        completed={this.handleChecked}
+                        updateToDo={this.handleToDo}
+                        onRemove={this.remove.bind(this, list.id)}
+                        handleChecked={this.handleChecked}
+                        onEdit={this.edit}
+                      >
+                        {list.toDo}
+                      </List>
+                    )
+                  })}
+                </ul>
+              </div>
             </div>
-            <ul className="list-group">
-              {this.state.lists.map((list, i) => {
-                return (
-                  <List
-                    key={list.id}
-                    id={list.id}
-                    list={list}
-                    checked={this.state.checked}
-                    completed={this.state.completed}
-                    editing={this.state.editing}
-                    priority={this.state.priority}
-                    completed={this.handleChecked}
-                    updateToDo={this.handleToDo}
-                    onRemove={this.remove.bind(this, list.id)}       
-                    handleChecked={this.handleChecked}                    
-                    onEdit={this.edit}
-                  >
-                    {list.toDo}
-                  </List>
-                )
-              })}
-            </ul>
           </div>
         </div>
       </div>
@@ -166,4 +171,4 @@ class App extends Component {
   }
 }
 
-export default App;
+
