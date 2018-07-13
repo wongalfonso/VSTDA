@@ -79,22 +79,6 @@ describe('Very Simple To Do App', function main() {
       })
   );
 
-  it('should allow to edit a todo item by clicking .edit-todo of a todo element', () =>
-    nightmare
-      .goto(url)
-      .select('select.create-todo-priority', '1')
-      .type('textarea.create-todo-text', 'ITEM')
-      .click('button.create-todo')
-      .wait('.edit-todo')
-      .click('.edit-todo')
-      .wait('.update-todo-text')
-      .type('.update-todo-text', ' UPDATED')
-      .click('button.update-todo')
-      .evaluate(() => document.querySelectorAll('li')[0].innerText)
-      .end()
-      .then(finalValue => expect(finalValue).to.contain('UPDATED'))
-  );
-
   it('should allow to delete a todo item by clicking .delete-todo of a todo element', () =>
     nightmare
       .goto(url)
